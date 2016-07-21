@@ -115,8 +115,9 @@ namespace SeafClient.Requests
             content.Add(dirContent);
 
             // transmit the content length, for this we use the private method TryComputeLength() called by reflection
-            long conLen = 0;
+            long conLen = 0;                        
             var func = typeof(MultipartContent).GetTypeInfo().GetDeclaredMethod("TryComputeLength");
+
             object[] args = new object[] { 0L };
             var r = func.Invoke(content, args);
             if (r is bool && (bool)r)
